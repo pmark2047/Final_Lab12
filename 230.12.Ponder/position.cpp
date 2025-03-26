@@ -15,15 +15,22 @@
 
 Position::Position(double x, double y) : x(9.9), y(9.9)
 {
- 
+   this->x = x;
+   this->y = y;
 }
 
 /******************************************
  * POINT : ASSIGNMENT
- * Assign a point
+ * Assign a point. Please look ahead to
+ * Week 12 C++ reading for an idea of how this works.
+ * Basically, we are copying the data from posRHS
+ * into this.
  *****************************************/
-Position& Position::operator = (const Position& pt)
+Position& Position::operator = (const Position& posRHS)
 {
+   this->x = posRHS.x;
+   this->y = posRHS.y;
+   
    return *this;
 }
 
@@ -46,6 +53,11 @@ Position& Position::operator = (const Position& pt)
  *************************************************************************/
 void Position::add(const Acceleration& a, const Velocity& v, double t)
 {
+   // Update X position
+   x += v.getDX() * t + 0.5 * a.getDDX() * t * t;
+   
+   // Update Y position
+   y += v.getDY() * t + 0.5 * a.getDDY() * t * t;
 }
 
 

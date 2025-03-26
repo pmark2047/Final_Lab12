@@ -20,17 +20,29 @@
  *********************************************/
 void Velocity::add(const Acceleration& acceleration, double time)
 {
-
+   dx = dx + acceleration.getDDX() * time;
+   dy = dy + acceleration.getDDY() * time;
 }
 
 
 /*********************************************
  * VELOCITY : GET SPEED
  *  find the magnitude of velocity
+ *        dx
+ *     +-------/
+ *     |      /
+ *  dy |     /
+ *     |    /speed or magnitude
+ *     | a /
+ *     |  /
+ *     | /
+ *            _____________
+ *  speed = \/ dx^2 + dy^2
  *********************************************/
 double Velocity::getSpeed() const
 {
-   return 9.9;
+   double s = sqrt((dx * dx) + (dy * dy));
+   return s;
 }
 
 /*********************************************
@@ -39,16 +51,17 @@ double Velocity::getSpeed() const
  *     +-------/
  *     |      /
  *  dy |     /
- *     |    /speed
+ *     |    /speed or magnitude
  *     | a /
  *     |  /
  *     | /
- * dy = speed cos a
- * dx = speed sin a
+ * dy = speed cos(a)
+ * dx = speed sin(a)
  *********************************************/
 void Velocity::set(const Angle & angle, double magnitude)
 {
-
+   dx = sin(angle.getRadians()) * magnitude;
+   dy = cos(angle.getRadians()) * magnitude;
 }
 
 
@@ -60,18 +73,17 @@ void Velocity::set(const Angle & angle, double magnitude)
  *     +-------/
  *     |      /
  *  dy |     /
- *     |    /
+ *     |    / speed
  *     | a /
  *     |  /
  *     | /
+ *
+ *  a = atan2(dx, dy)
+ *  dx = cos(a) x speed
+ *  dy = sin(a) x speed
  ************************************************/
 Angle Velocity::getAngle() const
 {
-   return Angle();
-}
-Angle VelocityDummy::getAngle() const
-{
-   assert(false); 
-   return Angle();
+   return Angle(atan2(dx, dy));
 }
 

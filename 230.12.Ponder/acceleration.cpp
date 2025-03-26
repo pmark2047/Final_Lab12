@@ -20,9 +20,12 @@
  *********************************************/
 void Acceleration::set(const Angle & a, double magnitude)
 {
-   
+   ddx = sin(a.getRadians()) * magnitude;
+   ddy = cos(a.getRadians()) * magnitude;
 }
-void AccelerationDummy::set(const Angle& a, double magnitude)
+
+void Acceleration::add(const Acceleration& acceleration)
 {
-   assert(false);
+   ddx += acceleration.ddx;
+   ddy += acceleration.ddy;
 }
