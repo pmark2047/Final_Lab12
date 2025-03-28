@@ -9,9 +9,9 @@
 
 #pragma once
 
-#define _USE_MATH_DEFINES 
+#define _USE_MATH_DEFINES
 #include <math.h>
-#include <cassert>  // for ASSERT 
+#include <cassert>  // for ASSERT
 
  /*******************************************************
   * AREA FROM RADIUS
@@ -33,10 +33,10 @@ inline double areaFromRadius(double radius)
  * This force is determined by
  *    force = 1/2 density drag area velocity ^ 2
  ************************************************************/
-inline double forceFromDrag(double density, double drag, 
+inline double forceFromDrag(double density, double drag,
                             double radius, double velocity)
 {
-   return 0.5 * density * drag * areaFromRadius(radius) * velocity;
+   return 0.5 * density * drag * areaFromRadius(radius) * (velocity * velocity);
 }
 
 /**********************************************************

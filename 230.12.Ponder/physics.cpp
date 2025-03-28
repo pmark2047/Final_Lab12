@@ -109,7 +109,30 @@ double densityFromAltitude(double altitude)
  ********************************************************/
 double speedSoundFromAltitude(double altitude)
 {
-   return -99.9;
+   const Mapping mapping[] =
+   { // Altitude (m)  Speed of Sound (m/s)
+      { 0    , 340 },
+      { 1000 , 336 },
+      { 2000 , 332 },
+      { 3000 , 328 },
+      { 4000 , 324 },
+      { 5000 , 320 },
+      { 6000 , 316 },
+      { 7000 , 312 },
+      { 8000 , 308 },
+      { 9000 , 303 },
+      { 10000, 299 },
+      { 15000, 295 },
+      { 20000, 295 },
+      { 25000, 295 },
+      { 30000, 305 },
+      { 40000, 324 },
+      { 50000, 337 },
+      { 60000, 319 },
+      { 70000, 289 },
+      { 80000, 269 }
+   };
+   return linearInterpolation(mapping, 20 /*numMapping*/, altitude);
 }
 
 
@@ -119,6 +142,26 @@ double speedSoundFromAltitude(double altitude)
  *********************************************************/
 double dragFromMach(double speedMach)
 {
-   return -99.9;
+   const Mapping mapping[] =
+   { // Mach      Drag Coefficient
+      { 0.000 , 0.0000 },
+      { 0.300 , 0.1629 },
+      { 0.500 , 0.1659 },
+      { 0.700 , 0.2031 },
+      { 0.890 , 0.2597 },
+      { 0.920 , 0.3010 },
+      { 0.960 , 0.3287 },
+      { 0.980 , 0.4002 },
+      { 1.000 , 0.4258 },
+      { 1.020 , 0.4335 },
+      { 1.060 , 0.4483 },
+      { 1.240 , 0.4064 },
+      { 1.530 , 0.3663 },
+      { 1.990 , 0.2897 },
+      { 2.870 , 0.2297 },
+      { 2.890 , 0.2306 },
+      { 5.000 , 0.2656 }
+   };
+   return linearInterpolation(mapping, 17 /*numMapping*/, speedMach);
 }
 
