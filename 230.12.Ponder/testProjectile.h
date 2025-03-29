@@ -61,7 +61,13 @@ private:
     *********************************************/
    void defaultConstructor()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // SETUP
+      Projectile p;
+      
+      // EXERCISE
+      // VERIFY
+      assertEquals(p.mass, 46.7);
+      assertEquals(p.radius, 0.077545);
    }
 
    /*********************************************
@@ -71,7 +77,20 @@ private:
     *********************************************/
    void reset_empty()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // SETUP
+      Projectile p;
+      p.mass = -99;
+      p.radius = -99;
+      p.flightPath = {};
+      Projectile::PositionVelocityTime emptyPath;
+      
+      // EXERCISE
+      p.reset();
+      
+      // VERIFY
+      assertEquals(p.mass, 46.7);
+      assertEquals(p.radius, 0.077545);
+      assertUnit(p.flightPath.empty());
    }
 
    /*********************************************
@@ -81,7 +100,27 @@ private:
     *********************************************/
    void reset_full()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // SETUP
+      Projectile p;
+      p.mass = -99;
+      p.radius = -99;
+      Projectile::PositionVelocityTime one;
+      Projectile::PositionVelocityTime two;
+      Projectile::PositionVelocityTime three;
+      
+      p.flightPath.push_back(one);
+      p.flightPath.push_back(two);
+      p.flightPath.push_back(three);
+      
+      Projectile::PositionVelocityTime emptyPath;
+      
+      // EXERCISE
+      p.reset();
+      
+      // VERIFY
+      assertEquals(p.mass, 46.7);
+      assertEquals(p.radius, 0.077545);
+      assertUnit(p.flightPath.empty());
    }
 
 

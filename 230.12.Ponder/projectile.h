@@ -10,7 +10,7 @@
 #pragma once
 
 #include <list>
-#include "position.h"
+#include "projectile.h"
 #include "velocity.h"
 #include "physics.h"
 #include "uiDraw.h"
@@ -32,15 +32,21 @@ public:
    friend ::TestProjectile;
 
    // create a new projectile with the default settings
-   Projectile() : mass(-99.9), radius(-99.9) {}
+   Projectile() : mass(DEFAULT_PROJECTILE_WEIGHT), radius(DEFAULT_PROJECTILE_RADIUS) {}
 
 
 
    // advance the round forward until the next unit of time
    void advance(double simulationTime) {}
+   
+   
 
-
-
+   // reset the projectile state
+   void reset() {
+      mass = DEFAULT_PROJECTILE_WEIGHT;
+      radius = DEFAULT_PROJECTILE_RADIUS;
+      flightPath.clear();
+   };
 
 private:
 
