@@ -41,51 +41,51 @@ void Projectile::advance(double simulationTime)
    // Step 1: getSpeed
    double speed = initPVT.v.getSpeed();
    
-   // Step 3: Find air density
+   // Step 2: Find air density
    double density = densityFromAltitude(initPVT.pos.getMetersY());
    
-   // Step 4: Find speed of sound
+   // Step 3: Find speed of sound
    double speedSound = speedSoundFromAltitude(initPVT.pos.getMetersY());
    
-   // Step 5: Calculate mach
+   // Step 4: Calculate mach
    double mach = speed / speedSound;
    
-   // Step 6: Find drag coefficient
+   // Step 5: Find drag coefficient
    double drag = dragFromMach(mach);
    
-   // Step 7: Calculate force
+   // Step 6: Calculate force
    double force = forceFromDrag(density, drag, DEFAULT_PROJECTILE_RADIUS, speed);
    
-   // Step 8: Calculate acceleration
+   // Step 7: Calculate acceleration
    double accelerationMag = accelerationFromForce(force, DEFAULT_PROJECTILE_WEIGHT);
    
-   // Step 9: Calculate ddx and ddy from total acceleration
+   // Step 8: Calculate ddx and ddy from total acceleration
    Acceleration a;
    a.set(initPVT.v.getAngle(), accelerationMag);
    
-   // Step 10: Account for gravity from ddy
+   // Step 9: Account for gravity from ddy
    double gravity = gravityFromAltitude(initPVT.pos.getMetersY());
    a.addDDY(-gravity);
    
-   // Step 11: Find new Position
+   // Step 10: Find new Position
    Position newPOS;
    newPOS.setMetersX(initPVT.pos.getMetersX() + initPVT.v.getDX() + 0.5 * a.getDDX());
    newPOS.setMetersY(initPVT.pos.getMetersY() + initPVT.v.getDX() + 0.5 * a.getDDY());
    
-   // Step 12: Find new Velocity
+   // Step 11: Find new Velocity
    Velocity newV;
    newV.setDX(initPVT.v.getDX() + a.getDDX());
    newV.setDY(initPVT.v.getDY() + a.getDDY());
    
-   // Step 13: Define new time
+   // Step 12: Define new time
    double newT = initPVT.t + 1.0;
    
-   // Step 14: Put it all together
+   // Step 13: Put it all together
    pvt.pos = newPOS;
    pvt.v = newV;
    pvt.t = newT;
    
-   // Step 15: Push to flightPath
+   // Step 14: Push to flightPath
    flightPath.push_back(pvt);
    
 }
