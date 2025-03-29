@@ -31,7 +31,7 @@ void Projectile::advance(double simulationTime)
       return;
    
    // establish old pvt
-   PositionVelocityTime initPVT = flightPath.front();
+   PositionVelocityTime initPVT = flightPath.back();
    
    // create new pvt
    PositionVelocityTime pvt;
@@ -70,7 +70,7 @@ void Projectile::advance(double simulationTime)
    // Step 10: Find new Position
    Position newPOS;
    newPOS.setMetersX(initPVT.pos.getMetersX() + initPVT.v.getDX() + 0.5 * a.getDDX());
-   newPOS.setMetersY(initPVT.pos.getMetersY() + initPVT.v.getDX() + 0.5 * a.getDDY());
+   newPOS.setMetersY(initPVT.pos.getMetersY() + initPVT.v.getDY() + 0.5 * a.getDDY());
    
    // Step 11: Find new Velocity
    Velocity newV;
