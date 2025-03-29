@@ -171,7 +171,9 @@ private:
       // SETUP
       Projectile p;
       Angle a = Angle(-90);
-      Position pos = Position(111, 222);
+      Position pos;
+      pos.x = 111;
+      pos.y = 222;
       double muzzleVelocity = 100;
       
       Projectile::PositionVelocityTime expectedPVT;
@@ -201,7 +203,9 @@ private:
       // SETUP
       Projectile p;
       Angle a = Angle(0);
-      Position pos = Position(111, 222);
+      Position pos;
+      pos.x = 111;
+      pos.y = 222;
       double muzzleVelocity = 100;
       
       Projectile::PositionVelocityTime expectedPVT;
@@ -234,7 +238,14 @@ private:
     *********************************************/
    void advance_nothing()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // SETUP
+      Projectile p;
+      
+      // EXERCISE
+      p.advance(1.0);
+      
+      // VERIFY
+      assertUnit(p.flightPath.empty());
    }
 
    /*********************************************
@@ -248,7 +259,34 @@ private:
     *********************************************/
    void advance_fall()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+         setupStandardFixture();
+         Position pos;
+         Projectile p;
+         Projectile::PositionVelocityTime pvt;
+         pvt.pos.x = 100.0;
+         pvt.pos.y = 200.0;
+         pvt.v.dx = 0.0;
+         pvt.v.dy = 0.0;
+         pvt.t = 100.0;
+         p.flightPath.push_back(pvt);
+         // exercise
+         p.advance(101.0);
+         // verify
+         assertUnit(p.flightPath.size() == 2);
+         assertEquals(p.mass, 46.7);
+         assertEquals(p.radius, 0.077545);
+         assertUnit(!p.flightPath.empty());
+         if (!p.flightPath.empty())
+         {
+            assertEquals(p.flightPath.back().pos.x, 100); // 100 + 50*1 + .5(-0.0799)*1*1
+            assertEquals(p.flightPath.back().pos.y, 195.0968); // 200 + 40*1 + .5(-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().v.dx, 0);   // 50 + (-0.0799)*1
+            assertEquals(p.flightPath.back().v.dy, -9.8);  //-40 + (-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().t, 101.0);
+         }
+         // teardown
+         teardownStandardFixture();
    }
 
    /*********************************************
@@ -262,7 +300,34 @@ private:
     *********************************************/
    void advance_horizontal()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+         setupStandardFixture();
+         Position pos;
+         Projectile p;
+         Projectile::PositionVelocityTime pvt;
+         pvt.pos.x = 100.0;
+         pvt.pos.y = 200.0;
+         pvt.v.dx = 50.0;
+         pvt.v.dy = 0.0;
+         pvt.t = 100.0;
+         p.flightPath.push_back(pvt);
+         // exercise
+         p.advance(101.0);
+         // verify
+         assertUnit(p.flightPath.size() == 2);
+         assertEquals(p.mass, 46.7);
+         assertEquals(p.radius, 0.077545);
+         assertUnit(!p.flightPath.empty());
+         if (!p.flightPath.empty())
+         {
+            assertEquals(p.flightPath.back().pos.x, 149.9756); // 100 + 50*1 + .5(-0.0799)*1*1
+            assertEquals(p.flightPath.back().pos.y, 195.0968); // 200 + 40*1 + .5(-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().v.dx, 49.9513);   // 50 + (-0.0799)*1
+            assertEquals(p.flightPath.back().v.dy, -9.8064);  //-40 + (-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().t, 101.0);
+         }
+         // teardown
+         teardownStandardFixture();
    }
 
    /*********************************************
@@ -276,7 +341,34 @@ private:
     *********************************************/
    void advance_up()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+         setupStandardFixture();
+         Position pos;
+         Projectile p;
+         Projectile::PositionVelocityTime pvt;
+         pvt.pos.x = 100.0;
+         pvt.pos.y = 200.0;
+         pvt.v.dx = 0.0;
+         pvt.v.dy = 100.0;
+         pvt.t = 100.0;
+         p.flightPath.push_back(pvt);
+         // exercise
+         p.advance(101.0);
+         // verify
+         assertUnit(p.flightPath.size() == 2);
+         assertEquals(p.mass, 46.7);
+         assertEquals(p.radius, 0.077545);
+         assertUnit(!p.flightPath.empty());
+         if (!p.flightPath.empty())
+         {
+            assertEquals(p.flightPath.back().pos.x, 100.0); // 100 + 50*1 + .5(-0.0799)*1*1
+            assertEquals(p.flightPath.back().pos.y, 294.9021); // 200 + 40*1 + .5(-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().v.dx, 0.0);   // 50 + (-0.0799)*1
+            assertEquals(p.flightPath.back().v.dy, 89.8042);  //-40 + (-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().t, 101.0);
+         }
+         // teardown
+         teardownStandardFixture();
    }
 
    /*********************************************
@@ -290,7 +382,34 @@ private:
     *********************************************/
    void advance_diagonalUp()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // setup
+         setupStandardFixture();
+         Position pos;
+         Projectile p;
+         Projectile::PositionVelocityTime pvt;
+         pvt.pos.x = 100.0;
+         pvt.pos.y = 200.0;
+         pvt.v.dx = 50.0;
+         pvt.v.dy = 40.0;
+         pvt.t = 100.0;
+         p.flightPath.push_back(pvt);
+         // exercise
+         p.advance(101.0);
+         // verify
+         assertUnit(p.flightPath.size() == 2);
+         assertEquals(p.mass, 46.7);
+         assertEquals(p.radius, 0.077545);
+         assertUnit(!p.flightPath.empty());
+         if (!p.flightPath.empty())
+         {
+            assertEquals(p.flightPath.back().pos.x, 149.9600); // 100 + 50*1 + .5(-0.0799)*1*1
+            assertEquals(p.flightPath.back().pos.y, 235.0648); // 200 + 40*1 + .5(-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().v.dx, 49.9201);   // 50 + (-0.0799)*1
+            assertEquals(p.flightPath.back().v.dy, 30.1297);  //-40 + (-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().t, 101.0);
+         }
+         // teardown
+         teardownStandardFixture();
    }
 
    /*********************************************
