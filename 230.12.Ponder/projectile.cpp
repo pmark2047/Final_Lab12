@@ -83,7 +83,7 @@ void Projectile::advance(double simulationTime)
    // Step 13: Put it all together
    pvt.pos = newPOS;
    pvt.v = newV;
-   pvt.t = newT;
+   pvt.t = simulationTime;
    
    // Step 14: Push to flightPath
    flightPath.push_back(pvt);
