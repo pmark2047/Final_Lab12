@@ -77,15 +77,12 @@ void Projectile::advance(double simulationTime)
    newV.setDX(initPVT.v.getDX() + a.getDDX());
    newV.setDY(initPVT.v.getDY() + a.getDDY());
    
-   // Step 12: Define new time
-   double newT = initPVT.t + 1.0;
-   
-   // Step 13: Put it all together
+   // Step 12: Put it all together
    pvt.pos = newPOS;
    pvt.v = newV;
    pvt.t = simulationTime;
    
-   // Step 14: Push to flightPath
+   // Step 13: Push to flightPath
    flightPath.push_back(pvt);
    
 }
