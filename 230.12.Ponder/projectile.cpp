@@ -51,7 +51,7 @@ void Projectile::advance(double simulationTime)
    double mach = speed / speedSound;
    
    // Step 5: Find drag coefficient
-   double drag = dragFromMach(mach);
+   double drag = -dragFromMach(mach);
    
    // Step 6: Calculate force
    double force = forceFromDrag(density, drag, DEFAULT_PROJECTILE_RADIUS, speed);
