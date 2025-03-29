@@ -7,7 +7,6 @@
  *    Everything we need to know about a projectile
  ************************************************************************/
 
-
  #include "projectile.h"
  using namespace std;
 

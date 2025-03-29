@@ -279,10 +279,10 @@ private:
          assertUnit(!p.flightPath.empty());
          if (!p.flightPath.empty())
          {
-            assertEquals(p.flightPath.back().pos.x, 100); // 100 + 50*1 + .5(-0.0799)*1*1
-            assertEquals(p.flightPath.back().pos.y, 195.0968); // 200 + 40*1 + .5(-9.8064+0.0638)*1*1
-            assertEquals(p.flightPath.back().v.dx, 0);   // 50 + (-0.0799)*1
-            assertEquals(p.flightPath.back().v.dy, -9.8);  //-40 + (-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().pos.x, 100);
+            assertEquals(p.flightPath.back().pos.y, 195.0968);
+            assertEquals(p.flightPath.back().v.dx, 0);
+            assertEquals(p.flightPath.back().v.dy, -9.8);
             assertEquals(p.flightPath.back().t, 101.0);
          }
          // teardown
