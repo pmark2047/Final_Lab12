@@ -18,9 +18,6 @@ double Position::metersFromPixels = 10.0;
 void callBack(const Interface* pUI, void* p)
 {
    Simulator * pSimulator = (Simulator*)p;
-   Position posUpperRight;
-   posUpperRight.setPixelsX(1000);
-   posUpperRight.setPixelsY(1000);
    
    ogstream gout;
    
@@ -39,7 +36,7 @@ int main()
    testRunner();
    
    // Initialize open GL
-   Position posUpperRight(4000, 4000);
+   Position posUpperRight(6000, 6000);
    Interface ui("Howitzer Simulator", posUpperRight);
    
    // Initialize the game class
