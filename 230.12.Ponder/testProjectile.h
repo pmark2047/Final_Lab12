@@ -137,7 +137,28 @@ private:
     *********************************************/
    void fire_right()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // SETUP
+      Projectile p;
+      Angle a = Angle(90);
+      Position pos = Position(111, 222);
+      double muzzleVelocity = 100;
+      
+      Projectile::PositionVelocityTime expectedPVT;
+      expectedPVT.pos = Position(111.0, 222.0);
+      expectedPVT.v = Velocity(100.0, 0.0);
+      expectedPVT.t = 1.0;
+      
+      // EXERCISE
+      p.fire(a, pos, muzzleVelocity);
+      
+      // VERIFY
+      assertEquals(p.flightPath.size(), 1); // flightPath should only have one PVt
+      assertEquals(p.flightPath.front().pos.x, expectedPVT.pos.x); // verify x position
+      assertEquals(p.flightPath.front().pos.y, expectedPVT.pos.y); // verify y postion
+      assertEquals(p.flightPath.front().v.dx, expectedPVT.v.dx); // verify velocity dx
+      assertEquals(p.flightPath.front().v.dy, expectedPVT.v.dy); // verify velocity dy
+      assertEquals(p.flightPath.front().t, expectedPVT.t); // verify time
+      
    }
 
    /*********************************************
@@ -147,7 +168,27 @@ private:
     *********************************************/
    void fire_left()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // SETUP
+      Projectile p;
+      Angle a = Angle(-90);
+      Position pos = Position(111, 222);
+      double muzzleVelocity = 100;
+      
+      Projectile::PositionVelocityTime expectedPVT;
+      expectedPVT.pos = Position(111.0, 222.0);
+      expectedPVT.v = Velocity(-100.0, 0.0);
+      expectedPVT.t = 1.0;
+      
+      // EXERCISE
+      p.fire(a, pos, muzzleVelocity);
+      
+      // VERIFY
+      assertEquals(p.flightPath.size(), 1); // flightPath should only have one PVt
+      assertEquals(p.flightPath.front().pos.x, expectedPVT.pos.x); // verify x position
+      assertEquals(p.flightPath.front().pos.y, expectedPVT.pos.y); // verify y postion
+      assertEquals(p.flightPath.front().v.dx, expectedPVT.v.dx); // verify velocity dx
+      assertEquals(p.flightPath.front().v.dy, expectedPVT.v.dy); // verify velocity dy
+      assertEquals(p.flightPath.front().t, expectedPVT.t); // verify time
    }
 
    /*********************************************
@@ -157,7 +198,27 @@ private:
     *********************************************/
    void fire_up()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      // SETUP
+      Projectile p;
+      Angle a = Angle(0);
+      Position pos = Position(111, 222);
+      double muzzleVelocity = 100;
+      
+      Projectile::PositionVelocityTime expectedPVT;
+      expectedPVT.pos = Position(111.0, 222.0);
+      expectedPVT.v = Velocity(0.0, 100.0);
+      expectedPVT.t = 1.0;
+      
+      // EXERCISE
+      p.fire(a, pos, muzzleVelocity);
+      
+      // VERIFY
+      assertEquals(p.flightPath.size(), 1); // flightPath should only have one PVt
+      assertEquals(p.flightPath.front().pos.x, expectedPVT.pos.x); // verify x position
+      assertEquals(p.flightPath.front().pos.y, expectedPVT.pos.y); // verify y postion
+      assertEquals(p.flightPath.front().v.dx, expectedPVT.v.dx); // verify velocity dx
+      assertEquals(p.flightPath.front().v.dy, expectedPVT.v.dy); // verify velocity dy
+      assertEquals(p.flightPath.front().t, expectedPVT.t); // verify time
    }
 
    /*****************************************************************
