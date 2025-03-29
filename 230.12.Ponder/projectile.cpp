@@ -84,5 +84,4 @@ void Projectile::advance(double simulationTime)
    
    // Step 13: Push to flightPath
    flightPath.push_back(pvt);
-   
 }

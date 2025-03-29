@@ -320,10 +320,10 @@ private:
          assertUnit(!p.flightPath.empty());
          if (!p.flightPath.empty())
          {
-            assertEquals(p.flightPath.back().pos.x, 149.9756); // 100 + 50*1 + .5(-0.0799)*1*1
-            assertEquals(p.flightPath.back().pos.y, 195.0968); // 200 + 40*1 + .5(-9.8064+0.0638)*1*1
-            assertEquals(p.flightPath.back().v.dx, 49.9513);   // 50 + (-0.0799)*1
-            assertEquals(p.flightPath.back().v.dy, -9.8064);  //-40 + (-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().pos.x, 149.9756);
+            assertEquals(p.flightPath.back().pos.y, 195.0968);
+            assertEquals(p.flightPath.back().v.dx, 49.9513);
+            assertEquals(p.flightPath.back().v.dy, -9.8064);
             assertEquals(p.flightPath.back().t, 101.0);
          }
          // teardown
@@ -361,10 +361,10 @@ private:
          assertUnit(!p.flightPath.empty());
          if (!p.flightPath.empty())
          {
-            assertEquals(p.flightPath.back().pos.x, 100.0); // 100 + 50*1 + .5(-0.0799)*1*1
-            assertEquals(p.flightPath.back().pos.y, 294.9021); // 200 + 40*1 + .5(-9.8064+0.0638)*1*1
-            assertEquals(p.flightPath.back().v.dx, 0.0);   // 50 + (-0.0799)*1
-            assertEquals(p.flightPath.back().v.dy, 89.8042);  //-40 + (-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().pos.x, 100.0);
+            assertEquals(p.flightPath.back().pos.y, 294.9021);
+            assertEquals(p.flightPath.back().v.dx, 0.0);
+            assertEquals(p.flightPath.back().v.dy, 89.8042);
             assertEquals(p.flightPath.back().t, 101.0);
          }
          // teardown
@@ -402,10 +402,10 @@ private:
          assertUnit(!p.flightPath.empty());
          if (!p.flightPath.empty())
          {
-            assertEquals(p.flightPath.back().pos.x, 149.9600); // 100 + 50*1 + .5(-0.0799)*1*1
-            assertEquals(p.flightPath.back().pos.y, 235.0648); // 200 + 40*1 + .5(-9.8064+0.0638)*1*1
-            assertEquals(p.flightPath.back().v.dx, 49.9201);   // 50 + (-0.0799)*1
-            assertEquals(p.flightPath.back().v.dy, 30.1297);  //-40 + (-9.8064+0.0638)*1*1
+            assertEquals(p.flightPath.back().pos.x, 149.9600);
+            assertEquals(p.flightPath.back().pos.y, 235.0648);
+            assertEquals(p.flightPath.back().v.dx, 49.9201);
+            assertEquals(p.flightPath.back().v.dy, 30.1297);
             assertEquals(p.flightPath.back().t, 101.0);
          }
          // teardown
@@ -444,10 +444,10 @@ private:
       assertUnit(!p.flightPath.empty());
       if (!p.flightPath.empty())
       {
-         assertEquals(p.flightPath.back().pos.x, 149.9601); // 100 + 50*1 + .5(-0.0799)*1*1
-         assertEquals(p.flightPath.back().pos.y, 155.1287); // 200 +-40*1 + .5(-9.8064+0.0638)*1*1
-         assertEquals(p.flightPath.back().v.dx, 49.9201);   // 50 + (-0.0799)*1
-         assertEquals(p.flightPath.back().v.dy, -49.7425);  //-40 + (-9.8064+0.0638)*1*1
+         assertEquals(p.flightPath.back().pos.x, 149.9601);
+         assertEquals(p.flightPath.back().pos.y, 155.1287);
+         assertEquals(p.flightPath.back().v.dx, 49.9201);
+         assertEquals(p.flightPath.back().v.dy, -49.7425);
          assertEquals(p.flightPath.back().t, 101.0);
       }
       // teardown
