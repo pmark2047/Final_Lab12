@@ -54,7 +54,7 @@ public:
    void setFramesPerSecond(double value);
    
    // Key event indicating a key has been pressed or not.  The callbacks
-   // should be the only onces to call this
+   // should be the only ones to call this
    void keyEvent(int key, bool fDown);
    void keyEvent();
 
