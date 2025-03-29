@@ -16,6 +16,7 @@
 #include "physics.h"
 #include "uiDraw.h"
 #include "angle.h"
+#include "acceleration.h"
 
 #define DEFAULT_PROJECTILE_WEIGHT 46.7       // kg
 #define DEFAULT_PROJECTILE_RADIUS 0.077545   // m
@@ -38,7 +39,7 @@ public:
       radius(DEFAULT_PROJECTILE_RADIUS) {}
 
    // advance the round forward until the next unit of time
-   void advance(double simulationTime) {}
+   void advance(double simulationTime);
    
    // fire the round
    void fire(Angle a, Position pos, double s); // angle, position, speed
