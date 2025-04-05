@@ -42,7 +42,7 @@ public:
    void advance(double simulationTime);
    
    // fire the round
-   void fire(const Angle& a, const Position& pos, double s, double simulationtime); // angle, position, speed
+   void fire(const Angle& a, const Position& pos, double s, double simulationTime); // angle, position, speed
    
    // reset the projectile state
    void reset() {
