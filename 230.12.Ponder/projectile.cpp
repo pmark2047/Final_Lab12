@@ -10,7 +10,7 @@
  #include "projectile.h"
  using namespace std;
 
-void Projectile::fire(Angle a, Position pos, double s)
+void Projectile::fire(const Angle& a, const Position& pos, double s)
 {
    // create variables and place in pvt
    PositionVelocityTime pvt;
