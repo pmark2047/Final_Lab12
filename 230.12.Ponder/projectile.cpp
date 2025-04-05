@@ -47,7 +47,7 @@ void Projectile::advance(double simulationTime)
    double magnitudeGravity = gravityFromAltitude(altitude);
    Angle angleGravity;
    angleGravity.setDown();
-   Acceleration aGravity(angleGravity, magnitudeGravity);
+   Acceleration aGravity(angleGravity, magnitudeGravity * 10);
    
    // compute total acceleration
    Acceleration aTotal = aGravity + aWind;

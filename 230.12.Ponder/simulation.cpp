@@ -72,10 +72,10 @@ void Simulator::display(const Interface* pUI)
  *********************************/
 void Simulator::input(const Interface* pUI)
 {
-   double increment = 0.15;
+   double increment = 0.1;
 
-   if (pUI->isUp())    { howitzer.raise(increment/4);   }
-   if (pUI->isDown())  { howitzer.raise(-increment/4);  }
+   if (pUI->isUp())    { howitzer.raise(increment/8);   }
+   if (pUI->isDown())  { howitzer.raise(-increment/8);  }
    if (pUI->isRight()) { howitzer.rotate(increment);  }
    if (pUI->isLeft())  { howitzer.rotate(-increment); }
    
