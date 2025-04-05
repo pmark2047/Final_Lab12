@@ -21,27 +21,12 @@
   *********************************************/
 class Simulator
 {
-public:
+   public:
    Ground ground;
    Howitzer howitzer;
    Position posUpperRight;
    
-   Simulator(const Position & posUpperRight)
-         : ground(posUpperRight), posUpperRight(posUpperRight)
-      {
-         howitzer.generatePosition(posUpperRight);
-         Position & pos = howitzer.getPosition();
-         ground.reset(pos);  // update Y to match ground height
-      }
-
-      void display(const Interface* pUI)
-      {
-         ogstream gout;
-
-         // Draw the ground
-         ground.draw(gout);
-
-         // Draw the howitzer
-         howitzer.draw(gout, 0.0);
-      }
+   Simulator(const Position & posUpperRight);
+   void display(const Interface* pUI);
 };
+
