@@ -18,7 +18,7 @@
 #include "angle.h"
 #include "acceleration.h"
 
-#define DEFAULT_PROJECTILE_WEIGHT 46.7000    // kg
+#define DEFAULT_PROJECTILE_WEIGHT 46.7    // kg
 #define DEFAULT_PROJECTILE_RADIUS 0.077545   // m
 
 // forward declaration for the unit test class
@@ -42,7 +42,7 @@ public:
    void advance(double simulationTime);
    
    // fire the round
-   void fire(const Angle& a, const Position& pos, double s); // angle, position, speed
+   void fire(const Angle& a, const Position& pos, double s, double simulationtime); // angle, position, speed
    
    // reset the projectile state
    void reset() {
@@ -50,7 +50,37 @@ public:
       radius = DEFAULT_PROJECTILE_RADIUS;
       flightPath.clear();
    }
-   double currentTime() const { return !flightPath.empty() ? flightPath.back().t : 0.0; };
+   double currentTime() const { return !flightPath.empty() ? flightPath.back().t : 0.0; }
+   
+   void draw(ogstream& gout) const
+   {
+      for (auto it = flightPath.cbegin(); it != flightPath.cend(); it++)
+         gout.drawProjectile(it->pos, currentTime() - it->t);
+   }
+   
+   bool flying() const  { return !flightPath.empty(); }
+   
+   double getAltitude() const { return flying() ? flightPath.back().pos.getMetersY() : 0; }
+   
+   Position getPosition() const { return flying() ? flightPath.back().pos : Position(); }
+   
+   double getFlightTime() const
+   {
+      return ( flightPath.size() >=2) ? flightPath.back().t - flightPath.front().t : 0.0;
+   }
+   
+   double getFlightDistance() const
+   {
+      return (flightPath.size() >= 2) ?
+      abs(flightPath.front().pos.getMetersX() - flightPath.back().pos.getMetersX()) : 0.0;
+   }
+   
+   double GetSpeed() const { return flying() ? flightPath.back().v.getSpeed() : 0.0; }
+   
+   void setMass(double mass) { this-> mass = mass; }
+   
+   void setRadius(double radius) { this-> radius = radius; }
+   ;
 
 private:
 
@@ -65,5 +95,6 @@ private:
 
    double mass;           // weight of the M795 projectile. Defaults to 46.7 kg
    double radius;         // radius of M795 projectile. Defaults to 0.077545 m
+   
    std::list<PositionVelocityTime> flightPath;
 };

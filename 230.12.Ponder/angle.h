@@ -66,6 +66,13 @@ public:
    void setRight()                 { radians = M_PI / 2; }
    void setLeft()                  { radians = M_PI * 1.5; }
    void reverse()                  { radians += M_PI; }
+   
+   Angle operator-() const
+   {
+      Angle aReturn(*this);
+      aReturn.reverse();
+      return aReturn;
+   }
    Angle& add(double delta)        { radians = normalize(radians + delta); return *this; }
 
    // set based on the components

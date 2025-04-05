@@ -141,6 +141,7 @@ private:
       Projectile p;
       Angle a = Angle(90);
       Position pos = Position(111, 222);
+      double simulationTime = 1.0;
       double muzzleVelocity = 100;
       
       Projectile::PositionVelocityTime expectedPVT;
@@ -149,7 +150,7 @@ private:
       expectedPVT.t = 1.0;
       
       // EXERCISE
-      p.fire(a, pos, muzzleVelocity);
+      p.fire(a, pos, muzzleVelocity, simulationTime);
       
       // VERIFY
       assertEquals(p.flightPath.size(), 1); // flightPath should only have one PVt
@@ -174,6 +175,7 @@ private:
       Position pos;
       pos.x = 111;
       pos.y = 222;
+      double simulationTime = 1.0;
       double muzzleVelocity = 100;
       
       Projectile::PositionVelocityTime expectedPVT;
@@ -182,7 +184,7 @@ private:
       expectedPVT.t = 1.0;
       
       // EXERCISE
-      p.fire(a, pos, muzzleVelocity);
+      p.fire(a, pos, muzzleVelocity, simulationTime);
       
       // VERIFY
       assertEquals(p.flightPath.size(), 1); // flightPath should only have one PVt
@@ -206,6 +208,7 @@ private:
       Position pos;
       pos.x = 111;
       pos.y = 222;
+      double simulationTime = 1.0;
       double muzzleVelocity = 100;
       
       Projectile::PositionVelocityTime expectedPVT;
@@ -214,7 +217,7 @@ private:
       expectedPVT.t = 1.0;
       
       // EXERCISE
-      p.fire(a, pos, muzzleVelocity);
+      p.fire(a, pos, muzzleVelocity, simulationTime);
       
       // VERIFY
       assertEquals(p.flightPath.size(), 1); // flightPath should only have one PVt
@@ -282,7 +285,7 @@ private:
             assertEquals(p.flightPath.back().pos.x, 100);
             assertEquals(p.flightPath.back().pos.y, 195.0968);
             assertEquals(p.flightPath.back().v.dx, 0);
-            assertEquals(p.flightPath.back().v.dy, -9.8);
+            assertEquals(p.flightPath.back().v.dy, -9.8064);
             assertEquals(p.flightPath.back().t, 101.0);
          }
          // teardown
