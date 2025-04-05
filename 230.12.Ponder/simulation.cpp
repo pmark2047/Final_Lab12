@@ -156,7 +156,7 @@ void callBack(const Interface* pUI, void* p)
       double dy = shellPos.getMetersY() - targetPos.getMetersY();
       double distanceSquared = dx * dx + dy * dy;
       
-      if (distanceSquared <= (25.0 * 25.0))
+      if (distanceSquared <= (500.0 * 500.0))
       {
          pSimulator->inFlight = false;
          pSimulator->targetHit = true;
