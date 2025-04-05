@@ -22,17 +22,10 @@
 class Simulator
 {
 public:
-   Ground ground;
-   Howitzer howitzer;
-   Position posUpperRight;
-   
-   Simulator(const Position & posUpperRight)
-         : ground(posUpperRight), posUpperRight(posUpperRight)
-      {
-         howitzer.generatePosition(posUpperRight);
-         Position & pos = howitzer.getPosition();
-         ground.reset(pos);  // update Y to match ground height
-      }
+    Ground ground;
+    Howitzer howitzer;
+    Position posUpperRight;
 
-   void display(const Interface* pUI);
+    Simulator(const Position & posUpperRight);
+    void display(const Interface* pUI);
 };
