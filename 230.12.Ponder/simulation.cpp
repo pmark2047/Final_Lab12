@@ -42,7 +42,7 @@ void Simulator::display(const Interface* pUI)
    howitzer.draw(gout, time);
    
    // Draw the projectile
-   gout.drawProjectile(projectile.getPosition(), projectile.currentTime());
+   projectile.draw(gout);
    
    // Draw the angle readout
    double angle = howitzer.getElevation().getDegrees();
@@ -81,7 +81,8 @@ void Simulator::input(const Interface* pUI)
          inFlight = true;
          projectile.fire(howitzer.getElevation(),   // current angle
                          howitzer.getPosition(),   // current position
-                         howitzer.getMuzzleVelocity() // initial speed
+                         howitzer.getMuzzleVelocity(),
+                         time// initial speed
                         );
       }
    }
