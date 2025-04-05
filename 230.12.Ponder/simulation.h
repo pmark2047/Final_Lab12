@@ -13,6 +13,7 @@
 #include "uiDraw.h"
 #include "howitzer.h"
 #include "ground.h"
+#include "projectile.h"
 
 
  /*********************************************
@@ -25,8 +26,12 @@ public:
     Ground ground;
     Howitzer howitzer;
     Position posUpperRight;
+    Projectile projectile;
+    bool inFlight = false; // used to determine if projectile has been fired
+    double time = 0.0;
 
     Simulator(const Position & posUpperRight);
     void display(const Interface* pUI);
     void input(const Interface* pUI);
+    void reset();
 };

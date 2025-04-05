@@ -18,8 +18,7 @@
 using namespace std;
 
 
-Simulator::Simulator(const Position & posUpperRight)
-    : ground(posUpperRight), posUpperRight(posUpperRight)
+Simulator::Simulator(const Position & posUpperRight) : ground(posUpperRight), posUpperRight(posUpperRight)
 {
     howitzer.generatePosition(posUpperRight);
     Position & pos = howitzer.getPosition();
@@ -40,7 +39,10 @@ void Simulator::display(const Interface* pUI)
    ground.draw(gout);
    
    // Draw the howitzer
-   howitzer.draw(gout, 0.0);
+   howitzer.draw(gout, time);
+   
+   // Draw the projectile
+   gout.drawProjectile(projectile.getPosition(), projectile.currentTime());
    
    // Draw the angle readout
    double angle = howitzer.getElevation().getDegrees();
@@ -59,14 +61,57 @@ void Simulator::display(const Interface* pUI)
 
 }
 
+/*********************************
+ * INPUT
+ * handles the key input
+ *********************************/
 void Simulator::input(const Interface* pUI)
 {
-   double increment = 0.1;
+   double increment = 0.15;
 
-   if (pUI->isUp())    { howitzer.raise(increment);   }
-   if (pUI->isDown())  { howitzer.raise(-increment);  }
+   if (pUI->isUp())    { howitzer.raise(increment/2);   }
+   if (pUI->isDown())  { howitzer.raise(-increment/2);  }
    if (pUI->isRight()) { howitzer.rotate(increment);  }
    if (pUI->isLeft())  { howitzer.rotate(-increment); }
+   
+   if (pUI -> isSpace())
+   {
+      if (!inFlight)
+      {
+         inFlight = true;
+         projectile.fire(howitzer.getElevation(),   // current angle
+                         howitzer.getPosition(),   // current position
+                         howitzer.getMuzzleVelocity() // initial speed
+                        );
+      }
+   }
+   
+   if (pUI->isQ())  // assume 'Q' is being used for 'R'
+   {
+      reset();
+   }
+}
+
+/*********************************
+ * RESET
+ * resets the program
+ *********************************/
+void Simulator::reset()
+{
+   // Reset internal time
+   time = 0.0;
+
+   // Reset in-flight flag
+   inFlight = false;
+
+   // Reset projectile
+   projectile.reset();
+
+   // Regenerate howitzer position
+   howitzer.generatePosition(posUpperRight);
+
+   // Reset the ground to match new howitzer position
+   ground.reset(howitzer.getPosition());
 }
 
 
@@ -80,14 +125,18 @@ void callBack(const Interface* pUI, void* p)
 {
    Simulator * pSimulator = (Simulator*)p;
    
-   pSimulator->display(pUI);
-   
    // handle input
    pSimulator->input(pUI);
    
    // advance the projectile
+   if (pSimulator->inFlight == true)
+   {
+      pSimulator->time += 0.1;
+      pSimulator->projectile.advance(pSimulator->time);
+   }
    
    // display the screen again
+   pSimulator->display(pUI);
 }
 
 
