@@ -61,12 +61,35 @@ class Howitzer
       double getMuzzleVelocity() const { return muzzleVelocity; }
 
       // move the angle of the howitzer
-      void rotate(double radian) { elevation.add(radian); }
+      void rotate(double radian)
+      {
+         double newAngle = elevation.getRadians() + radian;
+
+         // Normalize to [0, 2π)
+         while (newAngle < 0)
+            newAngle += 2 * M_PI;
+         while (newAngle >= 2 * M_PI)
+            newAngle -= 2 * M_PI;
+
+         // Allow only if in the top half: [0, π/2] or [3π/2, 2π]
+         if (newAngle <= M_PI / 2.0 || newAngle >= 3.0 * M_PI / 2.0)
+            elevation.setRadians(newAngle);
+      }
 
       // raise (or lower) the howitzer
       void raise(double radian)
       {
-         elevation.add(elevation.isRight() ? -radian : radian);
+         double newAngle = elevation.getRadians() + (elevation.isRight() ? -radian : radian);
+
+         // Normalize to [0, 2π)
+         while (newAngle < 0)
+            newAngle += 2 * M_PI;
+         while (newAngle >= 2 * M_PI)
+            newAngle -= 2 * M_PI;
+
+         // Only allow if in top half
+         if (newAngle <= M_PI / 2.0 || newAngle >= 3.0 * M_PI / 2.0)
+            elevation.setRadians(newAngle);
       }
 
       // get the elevation

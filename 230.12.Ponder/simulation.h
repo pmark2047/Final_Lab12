@@ -28,4 +28,5 @@ public:
 
     Simulator(const Position & posUpperRight);
     void display(const Interface* pUI);
+    void input(const Interface* pUI);
 };
