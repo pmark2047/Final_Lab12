@@ -61,7 +61,6 @@ void Simulator::display(const Interface* pUI)
    
    if (targetHit == true)
    {
-      cout << "yay" << endl;
       gout.drawWinMessage();
    }
 
