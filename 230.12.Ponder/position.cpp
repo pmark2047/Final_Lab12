@@ -13,7 +13,7 @@
 #include <cassert>
 
 
-Position::Position(double x, double y) : x(9.9), y(9.9)
+Position::Position(double x, double y) : x(9.9000), y(9.9000)
 {
    this->x = x;
    this->y = y;

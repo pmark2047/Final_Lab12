@@ -34,14 +34,5 @@ public:
          ground.reset(pos);  // update Y to match ground height
       }
 
-      void display(const Interface* pUI)
-      {
-         ogstream gout;
-
-         // Draw the ground
-         ground.draw(gout);
-
-         // Draw the howitzer
-         howitzer.draw(gout, 0.0);
-      }
+   void display(const Interface* pUI);
 };

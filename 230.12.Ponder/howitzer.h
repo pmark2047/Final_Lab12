@@ -19,7 +19,7 @@
 
 #pragma once
 
-#define DEFAULT_MUZZLE_VELOCITY   827.00     // m/s
+#define DEFAULT_MUZZLE_VELOCITY   827.000     // m/s
 
 
 class TestHowitzer;
@@ -35,7 +35,7 @@ class Howitzer
       friend ::TestHowitzer;
 
       // default constructor
-      Howitzer() : muzzleVelocity(DEFAULT_MUZZLE_VELOCITY), elevation(45.0) {}
+      Howitzer() : muzzleVelocity(DEFAULT_MUZZLE_VELOCITY), elevation(45.0000) {}
 
       // draw
       void draw(ogstream& gout, double flightTime) const

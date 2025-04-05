@@ -18,7 +18,7 @@
 #include "angle.h"
 #include "acceleration.h"
 
-#define DEFAULT_PROJECTILE_WEIGHT 46.7       // kg
+#define DEFAULT_PROJECTILE_WEIGHT 46.7000    // kg
 #define DEFAULT_PROJECTILE_RADIUS 0.077545   // m
 
 // forward declaration for the unit test class
@@ -49,14 +49,15 @@ public:
       mass = DEFAULT_PROJECTILE_WEIGHT;
       radius = DEFAULT_PROJECTILE_RADIUS;
       flightPath.clear();
-   };
+   }
+   double currentTime() const { return !flightPath.empty() ? flightPath.back().t : 0.0; };
 
 private:
 
    // keep track of one moment in the path of the projectile
    struct PositionVelocityTime
    {
-      PositionVelocityTime() : pos(), v(), t(0.0) {}
+      PositionVelocityTime() : pos(), v(), t(0.0000) {}
       Position pos;
       Velocity v;
       double t;

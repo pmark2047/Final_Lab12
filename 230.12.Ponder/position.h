@@ -35,7 +35,7 @@ public:
 
    
    // constructors
-   Position()            : x(0.0), y(0.0)  {}
+   Position()            : x(0.0000), y(0.0000)  {}
    Position(double x, double y);
    Position(const Position & pt) : x(pt.x), y(pt.y) {}
    Position& operator = (const Position& pt);

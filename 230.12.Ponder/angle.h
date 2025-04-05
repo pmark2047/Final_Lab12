@@ -34,7 +34,7 @@ public:
    friend TestProjectile;
 
    // Constructors
-   Angle()                  : radians(0.0)         {}
+   Angle()                  : radians(0.0000)         {}
    Angle(const Angle& rhs)  : radians(rhs.radians)         {}
    Angle(double degrees)    : radians((degrees/360) * 2 * M_PI)         {}
 

@@ -30,7 +30,7 @@ class Acceleration
 
 public:
    // constructors
-   Acceleration()                       : ddx(0.0), ddy(0.0) { }
+   Acceleration()                       : ddx(0.0000), ddy(0.0000) { }
    Acceleration(double ddx, double ddy) : ddx(ddx), ddy(ddy) { }
 
    // getters

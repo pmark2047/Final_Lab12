@@ -33,7 +33,7 @@ class Velocity
    
 public:
    // constructors
-   Velocity()                     : dx(0.0), dy(0.0) { }
+   Velocity()                     : dx(0.0000), dy(0.0000) { }
    Velocity(double dx, double dy) : dx(dx), dy(dy) { }
 
    // getters
