@@ -57,6 +57,8 @@ public:
    virtual void drawHowitzer(const Position & pos, double angle, double age);
    virtual void drawTarget(const Position& pos);
    virtual void drawText(const Position & topLeft, const char * text);
+   virtual void drawWinMessage() const;
+   void drawText(const Position & posTopLeft, const char * text) const;
    
 private:
    

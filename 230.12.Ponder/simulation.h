@@ -29,6 +29,7 @@ public:
     Projectile projectile;
     bool inFlight = false; // used to determine if projectile has been fired
     double time = 0.0;
+   bool targetHit = false;
 
     Simulator(const Position & posUpperRight);
     void display(const Interface* pUI);

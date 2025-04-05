@@ -58,6 +58,11 @@ void Simulator::display(const Interface* pUI)
    textPos.addPixelsY(-20);   // Move down from top edge
    
    gout.drawText(textPos, angleText.c_str());
+   
+   if (targetHit == true)
+   {
+      gout.drawWinMessage();
+   }
 
 }
 
@@ -134,6 +139,28 @@ void callBack(const Interface* pUI, void* p)
    {
       pSimulator->time += 0.1;
       pSimulator->projectile.advance(pSimulator->time);
+      
+      // Get current projectile position
+      Position shellPos = pSimulator->projectile.getPosition();
+      
+      // Check for collision with ground
+      double groundElevation = pSimulator->ground.getElevationMeters(shellPos);
+      if (shellPos.getMetersY() <= groundElevation)
+      {
+         pSimulator->inFlight = false;
+      }
+      
+      // Check for collision with target
+      Position targetPos = pSimulator->ground.getTarget();
+      double dx = shellPos.getMetersX() - targetPos.getMetersX();
+      double dy = shellPos.getMetersY() - targetPos.getMetersY();
+      double distanceSquared = dx * dx + dy * dy;
+      
+      if (distanceSquared <= (25.0 * 25.0))
+      {
+         pSimulator->inFlight = false;
+         pSimulator->targetHit = true;
+      }
    }
    
    // display the screen again

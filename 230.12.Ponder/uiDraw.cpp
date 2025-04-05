@@ -393,6 +393,25 @@ int random(int min, int max)
    return num;
 }
 
+/*************************************************************************
+ * DRAW TEXT
+ * Draw text using a simple bitmap font
+ *   INPUT  topLeft   The top left corner of the text
+ *          text      The text to be displayed
+ ************************************************************************/
+void ogstream :: drawText(const Position & posTopLeft, const char * text) const
+{
+   void *pFont = GLUT_TEXT;
+
+   // prepare to draw the text from the top-left corner
+   glRasterPos2f((GLfloat)posTopLeft.getPixelsX(), (GLfloat)posTopLeft.getPixelsY());
+
+   // loop through the text
+   for (const char *p = text; *p; p++)
+      glutBitmapCharacter(pFont, *p);
+}
+
+
 /******************************************************************
  * RANDOM
  * This function generates a random number.  
@@ -410,3 +429,8 @@ double random(double min, double max)
    return num;
 }
 
+void ogstream::drawWinMessage() const
+{
+   Position textPos(3000, 3000);
+   drawText(textPos, "Target Hit!");
+}
